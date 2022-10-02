@@ -21,6 +21,11 @@ const sendEmail: RequestHandler = async (req, res) => {
   });
 };
 
+const simpleWelcome: RequestHandler = (req, res) => {
+  res.send('<h1>Hello BROOO</h1>');
+};
+
+app.get('/', simpleWelcome);
 app.post('/email', sendEmail);
 
 export default app;
