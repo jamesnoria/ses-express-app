@@ -1,5 +1,6 @@
 import express from 'express';
 import { RequestHandler } from 'express';
+import sendEmail from './sendEmail';
 import { json } from 'body-parser';
 
 const app = express();
@@ -7,7 +8,7 @@ const app = express();
 app.use(json());
 app.use(express.urlencoded({ extended: true }));
 
-const sendEmail: RequestHandler = async (req, res) => {
+const email: RequestHandler = async (req, res) => {
   const { email } = req.body;
 
   if (!email) {
@@ -16,9 +17,18 @@ const sendEmail: RequestHandler = async (req, res) => {
     });
   }
 
-  res.status(200).json({
-    message: `Tu correo es ${email}`,
-  });
+  try {
+    const sender = new sendEmail();
+    await sender.SendEmailInstance(email);
+
+    res.status(200).json({
+      message: `Un correito ha sido enviado a: ${email}`,
+    });
+  } catch (err) {
+    res.status(500).json({
+      message: err,
+    });
+  }
 };
 
 const simpleWelcome: RequestHandler = (req, res) => {
@@ -26,6 +36,6 @@ const simpleWelcome: RequestHandler = (req, res) => {
 };
 
 app.get('/', simpleWelcome);
-app.post('/email', sendEmail);
+app.post('/email', email);
 
 export default app;
