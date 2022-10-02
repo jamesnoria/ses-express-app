@@ -1,6 +1,6 @@
 import express from 'express';
 import { RequestHandler } from 'express';
-import sendEmail from './sendEmail';
+import SendEmail from './sendEmail';
 import { json } from 'body-parser';
 
 const app = express();
@@ -18,7 +18,7 @@ const email: RequestHandler = async (req, res) => {
   }
 
   try {
-    const sender = new sendEmail();
+    const sender = new SendEmail();
     await sender.SendEmailInstance(email);
 
     res.status(200).json({

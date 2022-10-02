@@ -4,8 +4,8 @@ import { SendEmailRequest, SendEmailResponse } from 'aws-sdk/clients/ses';
 config.update({ region: 'us-east-1' });
 const sesClient = new SES();
 
-class sendEmail {
-  SendEmailInstance = (to_email: string) => {
+class SendEmail {
+  SendEmailInstance = (to_email: String) => {
     const params: SendEmailRequest = {
       Destination: {
         ToAddresses: [`${to_email}`],
@@ -38,4 +38,4 @@ class sendEmail {
   };
 }
 
-export default sendEmail;
+export default SendEmail;
