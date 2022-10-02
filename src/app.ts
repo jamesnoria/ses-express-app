@@ -19,7 +19,7 @@ const email: RequestHandler = async (req, res) => {
 
   try {
     const sender = new SendEmail();
-    await sender.SendEmailInstance(email);
+    await sender.sendEmailInstance(email);
 
     res.status(200).json({
       message: `Un correito ha sido enviado a: ${email}`,

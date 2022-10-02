@@ -4,7 +4,6 @@
   "description": "Simple aws-ses app with express",
   "main": "app.js",
   "scripts": {
-    "prestart": "tsc",
     "start": "node dist/server.js"
   },
   "author": "James Noria",
