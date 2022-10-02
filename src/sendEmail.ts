@@ -5,7 +5,7 @@ config.update({ region: 'us-east-1' });
 const sesClient = new SES();
 
 class SendEmail {
-  SendEmailInstance = (to_email: String) => {
+  sendEmailInstance = (to_email: String) => {
     const params: SendEmailRequest = {
       Destination: {
         ToAddresses: [`${to_email}`],
